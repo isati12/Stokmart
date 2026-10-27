@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* =========================================
+   DARK MODE OPTIMIZATION (Clear, Crisp, High Contrast)
+   ========================================= */
+html.dark body {
+  background-color: #090d16 !important;
+  color: #f8fafc !important;
+}
+
+/* Enhance text contrast in Dark Mode so smaller labels are never lost */
+html.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+html.dark .text-slate-500 {
+  color: #a0aec0 !important;
+}
+html.dark .border-slate-800 {
+  border-color: #1e293b !important;
+}
+html.dark .border-slate-700 {
+  border-color: #334155 !important;
+}
+
+/* =========================================
+   LIGHT MODE: ENTERPRISE BOOTSTRAP 5 STYLE
+   (High-Contrast Text, Clean White Cards)
+   ========================================= */
+html.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 1. Base Layout Backgrounds in Light Mode */
+html.light .bg-slate-950,
+html.light [class*="bg-slate-950"] {
+  background-color: #f8fafc !important;
+}
+
+/* 2. Elevated Cards & Containers: Crisp Pure White */
+html.light .bg-slate-900,
+html.light [class*="bg-slate-900"] {
+  background-color: #ffffff !important;
+}
+
+/* 3. Nested Inner Card Sections, Spec Highlights, Inner Boxes */
+html.light .bg-slate-850,
+html.light .bg-slate-800,
+html.light [class*="bg-slate-800"] {
+  background-color: #f8fafc !important;
+}
+
+/* 3b. Neutralize any dark gradient classes in Light Mode */
+html.light [class*="from-slate-900"]:not(.dark *),
+html.light [class*="via-indigo-950"]:not(.dark *) {
+  background-image: none !important;
+  background-color: #ffffff !important;
+}
+
+/* 4. Borders in Light Mode: Crisp & Defined */
+html.light .border-slate-900,
+html.light .border-slate-800,
+html.light [class*="border-slate-800"],
+html.light .border-slate-700,
+html.light [class*="border-slate-700"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* 5. Elevated Card Shadows in Light Mode */
+html.light .bg-slate-900.border,
+html.light .rounded-2xl.border,
+html.light .rounded-xl.border {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 6. Typography & Text Readability in Light Mode (WCAG Compliant) */
+/* Headings & Brand Titles: Pure Pitch Charcoal */
+html.light .text-white,
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5 {
+  color: #0f172a !important;
+}
+
+/* Primary text */
+html.light .text-slate-100 {
+  color: #0f172a !important;
+}
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+/* Subheadings & body paragraphs */
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+/* Secondary descriptions and labels (sharp dark slate, never washed out) */
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* Small helper captions (minimum 4.5:1 contrast against white) */
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+html.light .text-slate-600 {
+  color: #475569 !important;
+}
+
+/* 7. Status & Metrics Accent Colors in Light Mode */
+/* Emerald (In-Stock, Ready, Pricing, Optimal) - Deep Forest Green */
+html.light .text-emerald-300,
+html.light .text-emerald-400,
+html.light .text-emerald-500 {
+  color: #047857 !important; /* emerald-700 */
+}
+
+/* Cyan / Sky (TSB Forecast, Probability, Algorithmic Metrics) - Deep Ocean Cyan */
+html.light .text-cyan-300,
+html.light .text-cyan-400,
+html.light .text-cyan-500 {
+  color: #0e7490 !important; /* cyan-700 */
+}
+
+/* Amber (Warning, Reorder Point, Approaching ROP) - Deep Warm Amber */
+html.light .text-amber-300,
+html.light .text-amber-400,
+html.light .text-amber-500 {
+  color: #b45309 !important; /* amber-700 */
+}
+
+/* Rose / Red (Critical Stock, Out of Stock, Urgent PO) - Deep Crimson */
+html.light .text-rose-300,
+html.light .text-rose-400,
+html.light .text-rose-500,
+html.light .text-red-300,
+html.light .text-red-400,
+html.light .text-red-500 {
+  color: #be123c !important; /* rose-700 */
+}
+
+/* Indigo (Primary Accent, Admin Dashboard Roles) - Deep Royal Indigo */
+html.light .text-indigo-300,
+html.light .text-indigo-400,
+html.light .text-indigo-500 {
+  color: #4338ca !important; /* indigo-700 */
+}
+
+/* Teal & Blue */
+html.light .text-teal-300,
+html.light .text-teal-400,
+html.light .text-teal-500 {
+  color: #0f766e !important;
+}
+html.light .text-blue-300,
+html.light .text-blue-400,
+html.light .text-blue-500 {
+  color: #1d4ed8 !important;
+}
+
+/* 8. Status Badges & Pill Tags in Light Mode */
+html.light [class*="bg-emerald-950"],
+html.light [class*="bg-emerald-500\/10"],
+html.light [class*="bg-emerald-500\/20"] {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+html.light [class*="bg-amber-950"],
+html.light [class*="bg-amber-500\/10"],
+html.light [class*="bg-amber-500\/20"] {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+
+html.light [class*="bg-rose-950"],
+html.light [class*="bg-rose-500\/10"],
+html.light [class*="bg-rose-500\/20"] {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+  color: #be123c !important;
+}
+
+html.light [class*="bg-indigo-950"],
+html.light [class*="bg-indigo-500\/10"],
+html.light [class*="bg-indigo-500\/20"],
+html.light [class*="bg-indigo-600\/20"],
+html.light [class*="bg-indigo-600\/30"] {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+}
+
+html.light [class*="bg-cyan-950"],
+html.light [class*="bg-cyan-500\/10"],
+html.light [class*="bg-cyan-500\/20"] {
+  background-color: #ecfeff !important;
+  border-color: #a5f3fc !important;
+  color: #0e7490 !important;
+}
+
+html.light [class*="bg-red-600\/20"] {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+  color: #b91c1c !important;
+}
+
+/* 9. Preserve Crisp White Text on Filled Action Buttons */
+html.light .bg-emerald-600,
+html.light .bg-emerald-600:hover,
+html.light .bg-emerald-600 *,
+html.light .bg-emerald-500,
+html.light .bg-emerald-500:hover,
+html.light .bg-emerald-500 *,
+html.light .bg-indigo-600,
+html.light .bg-indigo-600:hover,
+html.light .bg-indigo-600 *,
+html.light .bg-indigo-700,
+html.light .bg-indigo-700:hover,
+html.light .bg-indigo-700 *,
+html.light .bg-rose-600,
+html.light .bg-rose-600:hover,
+html.light .bg-rose-600 *,
+html.light .bg-rose-500,
+html.light .bg-rose-500:hover,
+html.light .bg-rose-500 *,
+html.light .bg-red-600,
+html.light .bg-red-600:hover,
+html.light .bg-red-600 *,
+html.light [class*="from-indigo-600"],
+html.light [class*="from-indigo-600"] *,
+html.light [class*="from-emerald-600"],
+html.light [class*="from-emerald-600"] * {
+  color: #ffffff !important;
+}
+
+/* 10. Prevent Ghost Hover (Un-filled buttons must hover to dark slate) */
+html.light .hover\:text-white:hover:not([class*="bg-indigo"]):not([class*="bg-emerald"]):not([class*="bg-rose"]):not([class*="bg-red"]) {
+  color: #0f172a !important;
+}
+html.light .group:hover .group-hover\:text-white:not([class*="bg-indigo"]):not([class*="bg-emerald"]) {
+  color: #0f172a !important;
+}
+
+/* 11. Form Inputs, Selects, and Dropdowns in Light Mode */
+html.light input[type="text"],
+html.light input[type="email"],
+html.light input[type="password"],
+html.light input[type="number"],
+html.light input[type="tel"],
+html.light textarea,
+html.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+html.light select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* 12. Tables in Light Mode */
+html.light thead {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+html.light tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* 13. Urgent Callout Banners in Light Mode */
+html.light [class*="from-rose-950"] {
+  background-image: linear-gradient(to right, #fff1f2, #ffffff, #fffbeb) !important;
+  border-color: #fecdd3 !important;
+}
+html.light [class*="from-rose-950"] h4,
+html.light [class*="from-rose-950"] span {
+  color: #9f1239 !important;
+}
+html.light [class*="from-rose-950"] p {
+  color: #475569 !important;
+}
+
+/* 14. Modal Backdrop in Light Mode */
+html.light .fixed.inset-0.bg-slate-950\/80,
+html.light .fixed.inset-0.bg-slate-950\/75,
+html.light [class*="bg-slate-950\/75"],
+html.light [class*="bg-slate-950\/80"] {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}
+
+/* 15. Hero Gradient in Storefront */
+html.light section[class*="from-slate-900"] {
+  background-image: linear-gradient(to bottom, #f8fafc, #ffffff) !important;
+}

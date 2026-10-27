@@ -1,0 +1,6 @@
+{
+  "name": "StokSmart TSB - Monitoring Stok & Rekomendasi Restok",
+  "description": "Sistem monitoring inventaris real-time menggunakan algoritma TSB (Teunter-Syntetos-Babai) untuk peramalan permintaan intermiten dan rekomendasi restok akurat dengan storefront e-commerce dan dashboard admin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
